@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
-    'channels'
+    'channels',
+    'callbacks'
 ]
 
 MIDDLEWARE = [
@@ -94,4 +95,5 @@ STATIC_URL = '/static/'
 
 
 # Django Channels
+
 ASGI_APPLICATION = "webhook_logger.routing.application"
