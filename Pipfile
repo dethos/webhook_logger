@@ -10,6 +10,7 @@ pylint = "*"
 [packages]
 django = "==2.1.3"
 channels = "==2.1.5"
+channels-redis = "*"
 
 [requires]
 python_version = "3.6.7"

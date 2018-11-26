@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load staticfiles %} <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,5 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Webhook Logger</title>
   </head>
-  <body></body>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="{% static 'js/viewer.js' %}"></script>
+  </body>
 </html>

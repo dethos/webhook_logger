@@ -97,3 +97,12 @@ STATIC_URL = '/static/'
 # Django Channels
 
 ASGI_APPLICATION = "webhook_logger.routing.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
