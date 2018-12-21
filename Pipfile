@@ -5,7 +5,7 @@ name = "pypi"
 
 [dev-packages]
 pylint = "*"
-"autopep8" = "*"
+black = "==18.9b0"
 
 [packages]
 django = "==2.1.3"

@@ -6,10 +6,8 @@ import json
 class WebhookConsumer(WebsocketConsumer):
     def connect(self):
         """While the connection of open it is associated with a callback"""
-        self.callback = self.scope['url_route']['kwargs']['uuid']
-        async_to_sync(self.channel_layer.group_add)(
-            self.callback, self.channel_name
-        )
+        self.callback = self.scope["url_route"]["kwargs"]["uuid"]
+        async_to_sync(self.channel_layer.group_add)(self.callback, self.channel_name)
         self.accept()
 
     def disconnect(self, close_code):
