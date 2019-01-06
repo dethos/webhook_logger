@@ -17,7 +17,7 @@ from django.urls import path
 from callbacks.views import HomeView, CheckView, CallbackView
 
 urlpatterns = [
-    path('check', CheckView.as_view(), name='callback-check'),
-    path('submit/<uuid>', CallbackView.as_view(), name='callback-submit'),
-    path('', HomeView.as_view(), name='callback-home')
+    path("check", CheckView.as_view(), name="callback-check"),
+    path("<uuid>", CallbackView.as_view(), name="callback-submit"),
+    path("", HomeView.as_view(), name="callback-home"),
 ]

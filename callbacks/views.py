@@ -8,6 +8,8 @@ from django.utils import timezone
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 
+from .utils import get_ip_address
+
 
 class HomeView(RedirectView):
     """Initial page, just sends the visitor to an unique url"""
@@ -37,15 +39,28 @@ class CallbackView(View):
     def dispatch(self, request, *args, **kwargs):
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
-            kwargs["uuid"], {"type": "new_request", "data": self.request_data(request)}
+            kwargs["uuid"], {"type": "new_request", "data": self._request_data(request)}
         )
         return HttpResponse()
 
-    def request_data(self, request):
+    def _request_data(self, request):
+        body = request.body.decode("utf-8")
         return {
             "method": request.method,
+            "ip_address": get_ip_address(request),
             "query_params": request.GET,
-            "body": request.POST,
-            "headers": request.META,
+            "body": body,
+            "headers": self._received_headers(),
             "received_at": timezone.now().isoformat(),
         }
+
+    def _received_headers(self):
+        request = self.request
+        headers = []
+        for key, value in request.META.items():
+            if key.startswith("HTTP"):
+                original_header = (
+                    key.replace("HTTP_", "").replace("_", "-").capitalize()
+                )
+                headers.append({"name": original_header, "value": value})
+        return headers
