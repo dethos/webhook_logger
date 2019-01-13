@@ -34,7 +34,17 @@
     </section>
     <section class="section" id="app">
       <div class="container">
-        <div v-if="requests.length === 0">No requests received yet</div>
+        <div v-if="requests.length < 1" class="has-text-centered">
+          No requests received yet
+        </div>
+        <div
+          v-if="requests.length >= 1"
+          class="box is-shadowless has-text-centered"
+        >
+          <a class="button is-warning" v-on:click="clean()">
+            Clean all content
+          </a>
+        </div>
         <div class="card" v-for="(request, index) in requests">
           <header class="card-header">
             <p class="card-header-title" v-on:click="toggleDetail(index)">
