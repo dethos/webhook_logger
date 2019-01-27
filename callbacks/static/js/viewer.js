@@ -20,9 +20,10 @@ function setupConnection() {
     Setup a connection to receive all the information
     about the webhooks in real-time.
   */
+  let protocol = document.location.protocol == "https:" ? "wss://" : "ws://";
   let callbackCode = getCallbackCode();
   let webhookSocket = new WebSocket(
-    "ws://" + window.location.host + "/ws/callback/" + callbackCode + "/"
+    protocol + window.location.host + "/ws/callback/" + callbackCode + "/"
   );
 
   webhookSocket.onmessage = function(event) {
