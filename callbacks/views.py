@@ -4,6 +4,7 @@ from django.views.generic import RedirectView, TemplateView, View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.utils import timezone
+from django.conf import settings
 
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
@@ -58,7 +59,7 @@ class CallbackView(View):
         request = self.request
         headers = []
         for key, value in request.META.items():
-            if key.startswith("HTTP"):
+            if key.startswith("HTTP") and key not in settings.EXCLUDED_HEADERS:
                 original_header = (
                     key.replace("HTTP_", "").replace("_", "-").capitalize()
                 )

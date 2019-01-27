@@ -21,12 +21,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
+APP_ENV = os.environ.get("ENVIRONMENT", "development")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+if APP_ENV == "development":
+    DEBUG = True
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = [os.environ.get("DOMAIN")]
 
 # Application definition
 
@@ -102,3 +104,6 @@ CHANNEL_LAYERS = {
         "CONFIG": {"hosts": [(os.environ.get("REDIS_URL", "127.0.0.1"), 6379)]},
     }
 }
+
+# Should use the format of request.META
+EXCLUDED_HEADERS = os.environ.get("EXCLUDE_HEADERS", "").split(",")
