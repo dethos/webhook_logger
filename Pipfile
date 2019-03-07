@@ -6,6 +6,8 @@ name = "pypi"
 [dev-packages]
 pylint = "*"
 black = "==18.9b0"
+pytest = "*"
+pytest-django = "*"
 
 [packages]
 django = "==2.1.5"
