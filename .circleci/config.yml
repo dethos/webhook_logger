@@ -16,7 +16,7 @@ jobs:
           command: |
             pip install pipenv
             export PIPENV_VENV_IN_PROJECT=1
-            pipenv install
+            pipenv install --dev
 
       - save_cache:
           paths:
