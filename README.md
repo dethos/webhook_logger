@@ -1,5 +1,7 @@
 # Webhook Logger
 
+[![CircleCI](https://circleci.com/gh/dethos/webhook_logger.svg?style=svg)](https://circleci.com/gh/dethos/webhook_logger)
+
 This pet project is a simple webhook logger built to test `django-channels`.
 It works in a way very similar to [Webhook tester](https://webhook.site).
 
