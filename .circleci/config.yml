@@ -49,3 +49,10 @@ jobs:
           command: |
             export PIPENV_VENV_IN_PROJECT=1
             pipenv run pytest
+
+workflows:
+  version: 2
+  format_and_test:
+    jobs:
+      - format
+      - test
