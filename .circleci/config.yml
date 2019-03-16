@@ -20,7 +20,7 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "Pipfile.lock" }}
       - run:
-          name: run tests
+          name: check formatting with black
           command: |
             export PIPENV_VENV_IN_PROJECT=1
             pipenv run black --check .
