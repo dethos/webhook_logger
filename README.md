@@ -1,13 +1,18 @@
 # Webhook Logger
 
+**CI Status**:
 [![CircleCI](https://circleci.com/gh/dethos/webhook_logger.svg?style=svg)](https://circleci.com/gh/dethos/webhook_logger)
 
 This pet project is a simple webhook logger built to test `django-channels`.
 It works in a way very similar to [Webhook tester](https://webhook.site).
 
-Feel free to fork and play with it.
+You create a callback url by visiting the main page, then you use that URL as your webhook callback, all the requests made to it will be displayed on your browser for inspection in real-time.
 
-# Setup development environment
+Feel free to fork, [play with it on the current website](https://webhook-logger.ovalerio.net) or if you prefer launch your own instance (the below button will do it for your without any extra effort).
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## Setup development environment
 
 To run the project locally you just need to have a machine with `python` and `pipenv` installed then:
 

@@ -1,0 +1,13 @@
+{
+  "name": "Webhook Logger",
+  "description": "Small app that provides callback urls to test webhooks",
+  "repository": "https://github.com/dethos/webhook_logger",
+  "keywords": ["python", "django", "django-channels", "webhooks"],
+  "addons": ["heroku-redis:hobby-dev"],
+  "env": {
+    "SECRET_KEY": {
+      "description": "Django Secret key settings",
+      "generator": "secret"
+    }
+  }
+}
