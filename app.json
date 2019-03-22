@@ -9,7 +9,7 @@
       "description": "Django Secret key settings",
       "generator": "secret"
     },
-    "APP_ENV": {
+    "ENVIRONMENT": {
       "description": "Environment the app runs in",
       "value": "heroku"
     }
