@@ -26,6 +26,9 @@ APP_ENV = os.environ.get("ENVIRONMENT", "development")
 # SECURITY WARNING: don't run with debug turned on in production!
 if APP_ENV == "development":
     DEBUG = True
+elif APP_ENV == "heroku":
+    DEBUG = False
+    ALLOWED_HOSTS = [".herokuapp.com"]
 else:
     DEBUG = False
     ALLOWED_HOSTS = [os.environ.get("DOMAIN")]
