@@ -1,1 +1,1 @@
-web: daphne webhook_logger.asgi:application
+web: daphne -p $PORT webhook_logger.asgi:application
