@@ -61,8 +61,7 @@
           </header>
           <div class="card-content" v-if="request.displayFull">
             <div class="content">
-              <h2>Headers</h2>
-              <table>
+              <table class="table is-striped is-fullwidth">
                 <thead>
                   <th>Header</th>
                   <th>Content</th>
@@ -75,10 +74,10 @@
                 </tbody>
               </table>
 
-              <h2>Query Params</h2>
+              <h3>Query Params</h3>
               <div class="box">[[request.query_params]]</div>
 
-              <h2>Body</h2>
+              <h3>Body</h3>
               <div class="box">[[request.body]]</div>
             </div>
           </div>
