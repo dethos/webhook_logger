@@ -71,6 +71,19 @@ var requestList = new Vue({
     },
     clean: function() {
       this.requests = [];
+    },
+    download: function() {
+      let data = JSON.stringify(this.requests);
+      let encoded_data = encodeURIComponent(data);
+
+      let element = document.createElement("a");
+      element.setAttribute("href", "data:text/plain;charset=utf-8," + data);
+      element.setAttribute("download", "requests.json");
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
     }
   }
 });

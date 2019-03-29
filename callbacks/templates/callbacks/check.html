@@ -42,8 +42,11 @@
           v-if="requests.length >= 1"
           class="box is-shadowless has-text-centered"
         >
+          <a class="button is-link" v-on:click="download()">
+            Download contents
+          </a>
           <a class="button is-warning" v-on:click="clean()">
-            Clean all content
+            Clean contents
           </a>
         </div>
         <div class="card" v-for="(request, index) in requests">
