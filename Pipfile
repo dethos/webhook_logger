@@ -10,7 +10,7 @@ pytest = "*"
 pytest-django = "*"
 
 [packages]
-django = "==2.1.7"
+django = "==2.2"
 channels = "==2.1.6"
 channels-redis = "==2.3.3"
 daphne = "==2.2.4"
