@@ -116,4 +116,4 @@ CHANNEL_LAYERS = {
 }
 
 # Should use the format of request.META
-EXCLUDED_HEADERS = os.environ.get("EXCLUDE_HEADERS", "").split(",")
+EXCLUDED_HEADERS = os.environ.get("EXCLUDED_HEADERS", "").split(",")

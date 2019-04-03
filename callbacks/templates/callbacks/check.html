@@ -70,9 +70,9 @@
                   <th>Content</th>
                 </thead>
                 <tbody>
-                  <tr v-for="header in request.headers">
-                    <td>[[header.name]]</td>
-                    <td>[[header.value]]</td>
+                  <tr v-for="(value, header) in request.headers">
+                    <td>[[header]]</td>
+                    <td>[[value]]</td>
                   </tr>
                 </tbody>
               </table>

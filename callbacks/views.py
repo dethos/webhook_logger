@@ -51,17 +51,10 @@ class CallbackView(View):
             "ip_address": get_ip_address(request),
             "query_params": request.GET,
             "body": body,
-            "headers": self._received_headers(),
+            "headers": self._filter_headers(request.headers),
             "received_at": timezone.now().isoformat(),
         }
 
-    def _received_headers(self):
-        request = self.request
-        headers = []
-        for key, value in request.META.items():
-            if key.startswith("HTTP") and key not in settings.EXCLUDED_HEADERS:
-                original_header = (
-                    key.replace("HTTP_", "").replace("_", "-").capitalize()
-                )
-                headers.append({"name": original_header, "value": value})
-        return headers
+    def _filter_headers(self, headers):
+        exc = settings.EXCLUDED_HEADERS
+        return {key: value for key, value in headers.items() if key not in exc}
