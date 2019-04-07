@@ -8,7 +8,7 @@ function getCallbackCode() {
   return urlParams.get("cb");
 }
 
-function setCallbackUrl(callbackCode) {
+function setCallbackUrl() {
   let protocol = document.location.protocol;
   let host = document.location.host;
   let submitURL = `${protocol}//${host}/${getCallbackCode()}`;
@@ -84,6 +84,20 @@ var requestList = new Vue({
       document.body.appendChild(element);
       element.click();
       document.body.removeChild(element);
+    }
+  }
+});
+
+var callbackDetails = new Vue({
+  el: "#callback-details",
+  delimiters: ["[[", "]]"],
+  data: {},
+  methods: {
+    copytoclipboard: function() {
+      var url = document.getElementById("callback-uuid-field");
+      url.select();
+      document.execCommand("copy");
+      alert("The callback url was copied to your clipboard.");
     }
   }
 });
