@@ -1,3 +1,6 @@
+/*
+  Utility functions to help with some common tasks.
+*/
 function logger(message) {
   let datetime = new Date().toISOString();
   console.log(`[Webhook_logger] [${datetime}] ${message}`);
@@ -8,13 +11,9 @@ function getCallbackCode() {
   return urlParams.get("cb");
 }
 
-function setCallbackUrl() {
-  let protocol = document.location.protocol;
-  let host = document.location.host;
-  let submitURL = `${protocol}//${host}/${getCallbackCode()}`;
-  document.getElementById("callback-uuid-field").value = submitURL;
-}
-
+/*
+  Connection setup. All code that handles the websocket traffic.
+*/
 function setupConnection() {
   /*
     Setup a connection to receive all the information
@@ -46,13 +45,10 @@ function setupConnection() {
 }
 
 /*
-  Setup a simple component to handle the display of new content.
-  Only supports two functions:
-  - Add new content
-  - Clean existing content
+  Setup a simple components to handle the display of new content.
 */
 var requestList = new Vue({
-  el: "#app",
+  el: "#request-list",
   delimiters: ["[[", "]]"],
   data: {
     requests: []
@@ -91,7 +87,9 @@ var requestList = new Vue({
 var callbackDetails = new Vue({
   el: "#callback-details",
   delimiters: ["[[", "]]"],
-  data: {},
+  data: {
+    callback_url: ""
+  },
   methods: {
     copytoclipboard: function() {
       var url = document.getElementById("callback-uuid-field");
@@ -99,11 +97,15 @@ var callbackDetails = new Vue({
       document.execCommand("copy");
       alert("The callback url was copied to your clipboard.");
     }
+  },
+  mounted: function() {
+    let protocol = document.location.protocol;
+    let host = document.location.host;
+    this.callback_url = `${protocol}//${host}/${getCallbackCode()}`;
   }
 });
 
 /*
   Prepare the page for action
 */
-setCallbackUrl();
 setupConnection();

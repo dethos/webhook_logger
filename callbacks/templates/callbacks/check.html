@@ -33,7 +33,8 @@
                 id="callback-uuid-field"
                 class="input is-large is-info"
                 type="text"
-                placeholder="Large input"
+                placeholder="Callback URL"
+                v-model="callback_url"
                 readonly
               />
               <span class="icon is-medium is-left">
@@ -48,7 +49,7 @@
           </div>
         </div>
       </section>
-      <section class="section" id="app">
+      <section class="section" id="request-list">
         <div class="container">
           <div v-if="requests.length < 1" class="has-text-centered">
             No requests received yet
