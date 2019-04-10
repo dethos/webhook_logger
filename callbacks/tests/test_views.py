@@ -45,3 +45,22 @@ def test_callback_view_submits_request_info_to_channel_layer(monkeypatch):
     )
     assert response.status_code == 200
     mock.assert_called_with(callback, {"type": "new_request", "data": request_data})
+
+
+def test_callback_view_filters_excluded_headers(settings, monkeypatch):
+    settings.EXCLUDED_HEADERS = ["Excluded"]
+    mock = MagicMock()
+    monkeypatch.setattr("callbacks.views.async_to_sync", lambda x: mock)
+    callback = str(uuid.uuid4())
+    response = Client().post(
+        reverse("callback-submit", kwargs={"uuid": callback}),
+        HTTP_not_excluded="one",
+        HTTP_excluded="two",
+    )
+    cb, all_data = mock.call_args[0]
+    assert response.status_code == 200
+    assert callback == cb
+    data = all_data["data"]
+    assert "headers" in data
+    assert "Excluded" not in data["headers"].keys()
+    assert "Not-Excluded" in data["headers"].keys()
