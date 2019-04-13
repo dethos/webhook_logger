@@ -88,14 +88,19 @@ var callbackDetails = new Vue({
   el: "#callback-details",
   delimiters: ["[[", "]]"],
   data: {
-    callback_url: ""
+    callback_url: "",
+    show_copy_notification: false
   },
   methods: {
     copytoclipboard: function() {
       var url = document.getElementById("callback-uuid-field");
       url.select();
       document.execCommand("copy");
-      alert("The callback url was copied to your clipboard.");
+      this.show_copy_notification = true;
+      let self = this;
+      setTimeout(function() {
+        self.show_copy_notification = false;
+      }, 2000);
     }
   },
   mounted: function() {
