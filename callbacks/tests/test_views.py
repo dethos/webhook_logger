@@ -64,3 +64,13 @@ def test_callback_view_filters_excluded_headers(settings, monkeypatch):
     assert "headers" in data
     assert "Excluded" not in data["headers"].keys()
     assert "Not-Excluded" in data["headers"].keys()
+
+
+@pytest.mark.parametrize("status", [200, 201, 400, 401, 403, 404, 500])
+def test_callback_view_non_default_response(status, monkeypatch):
+    monkeypatch.setattr("callbacks.views.async_to_sync", lambda x: lambda x, y: None)
+    callback = uuid.uuid4()
+    res = Client().get(
+        reverse("callback-submit-response", kwargs={"uuid": callback, "status": status})
+    )
+    assert res.status_code == status

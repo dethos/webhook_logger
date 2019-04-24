@@ -42,7 +42,8 @@ class CallbackView(View):
         async_to_sync(channel_layer.group_send)(
             kwargs["uuid"], {"type": "new_request", "data": self._request_data(request)}
         )
-        return HttpResponse()
+        response_status = kwargs.get("status", 200)
+        return HttpResponse(status=response_status)
 
     def _request_data(self, request):
         body = request.body.decode("utf-8")
