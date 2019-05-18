@@ -43,6 +43,24 @@ function setupConnection() {
     setupConnection();
   };
 }
+/*
+  Create the highlight directive
+*/
+Vue.directive("highlightjs", {
+  deep: true,
+  bind: function(el, binding) {
+    if (binding.value) {
+      el.textContent = binding.value;
+    }
+    hljs.highlightBlock(el);
+  },
+  componentUpdated: function(el, binding) {
+    if (binding.value) {
+      target.textContent = binding.value;
+      hljs.highlightBlock(target);
+    }
+  }
+});
 
 /*
   Setup a simple components to handle the display of new content.
