@@ -5,7 +5,7 @@ import json
 
 class WebhookConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        """While the connection of open it is associated with a callback"""
+        """While the connection is open, it is associated with a callback id"""
         self.callback = self.scope["url_route"]["kwargs"]["uuid"]
         await self.channel_layer.group_add(self.callback, self.channel_name)
         await self.accept()
