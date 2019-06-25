@@ -5,16 +5,16 @@ name = "pypi"
 
 [dev-packages]
 pylint = "*"
-black = "==18.9b0"
+black = "==19.3b0"
 pytest = "*"
 pytest-django = "*"
 
 [packages]
-django = "==2.2"
-channels = "==2.1.6"
-channels-redis = "==2.3.3"
-daphne = "==2.2.4"
+django = "==2.2.2"
+channels = "==2.2.0"
+channels-redis = "==2.4.0"
+daphne = "==2.3.0"
 whitenoise = "==4.1.2"
 
 [requires]
-python_version = "3.6.7"
+python_version = "3.7.3"
